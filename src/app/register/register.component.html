@@ -1,0 +1,104 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="validateForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">First Name</label>
+        <input type="text" class="form-control" formControlName="first_name" #first_name />
+      </div>
+      <div
+        *ngIf="validateForm.controls['first_name'].invalid && (validateForm.controls['first_name'].dirty || validateForm.controls['first_name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="validateForm.controls['first_name'].errors.required">
+          First Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Last Name </label>
+        <input type="text" class="form-control" formControlName="last_name" #last_name />
+      </div>
+      <div
+        *ngIf="validateForm.controls['last_name'].invalid && (validateForm.controls['last_name'].dirty || validateForm.controls['last_name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="validateForm.controls['last_name'].errors.required">
+          Last Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Phone Number </label>
+        <input type="text" class="form-control" formControlName="phone" #phone />
+      </div>
+      <div
+        *ngIf="validateForm.controls['phone'].invalid && (validateForm.controls['phone'].dirty || validateForm.controls['phone'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="validateForm.controls['phone'].errors.required">
+          Phone Number is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Password</label>
+        <input type="password" class="form-control" formControlName="password" #password />
+      </div>
+      <div
+        *ngIf="validateForm.controls['password'].invalid && (validateForm.controls['password'].dirty || validateForm.controls['phone'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="validateForm.controls['password'].errors.required">
+          Password is required.
+        </div>
+        <div *ngIf="validateForm.controls['password'].errors.minlength">
+          Password must be at least 6 characters</div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Retype Password</label>
+        <input type="password" class="form-control" formControlName="retypepassword" #retypepassword />
+      </div>
+      <div
+        *ngIf="validateForm.controls['retypepassword'].invalid && (validateForm.controls['retypepassword'].dirty || validateForm.controls['phone'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="validateForm.controls['retypepassword'].errors.required">
+          Retype Password is required.
+        </div>
+        <div *ngIf="validateForm.controls['retypepassword'].errors.mustMatch">
+          Passwords must match
+        </div>
+      </div>
+      <div class="form-group">
+        <!-- <button
+          (click)="addBusiness(first_name.value, last_name.value, phone.value,password.value,retypepassword.value)"
+          [disabled]="validateForm.pristine || validateForm.invalid" class="btn btn-primary">
+          Register</button> -->
+          <button (click)="addBusiness(first_name.value, last_name.value, phone.value,password.value,retypepassword.value)" class="btn btn-primary">Register</button>
+        <!-- </button>
+          <button type="submit" 
+          [disabled]="validateForm.pristine || validateForm.invalid" 
+          class="btn btn-primary">Register</button> -->
+      </div>
+    </form>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Phone Number</td>
+      <td>Password</td>
+      <td>Retype Password</td>
+      <td colspan="2">Actions</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let registers of register">
+      <td>{{ registers.first_name }}</td>
+      <td>{{ registers.last_name }}</td>
+      <td>{{ registers.phone }}</td>
+      <td>{{registers.password}}</td>
+      <td>{{registers.retypepassword}}</td>
+      <!-- <td>{{registers._id}}</td> -->
+      <!-- <td><a [routerLink]="['/edit', business._id]" class="btn btn-primary">Edit</a></td> -->
+      <!-- <td><a [routerLink]="deleteRegister(registers._id)" class="btn btn-danger">Delete</a></td> -->
+      <td><button (click)="deleteRegister()" class="btn btn-danger">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
